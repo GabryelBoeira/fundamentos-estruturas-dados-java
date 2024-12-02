@@ -1,4 +1,4 @@
-package com.gabryel.recursividade.exercico6;
+package com.gabryel.recursividade.exercicio6;
 
 public class ProgressaoAritmetica {
 
