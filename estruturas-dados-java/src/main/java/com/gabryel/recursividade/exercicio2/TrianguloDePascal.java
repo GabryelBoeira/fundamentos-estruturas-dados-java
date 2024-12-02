@@ -1,4 +1,4 @@
-package com.gabryel.recursividade.execicio2;
+package com.gabryel.recursividade.exercicio2;
 
 public class TrianguloDePascal {
 
