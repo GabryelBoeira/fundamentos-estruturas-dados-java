@@ -1,4 +1,4 @@
-package com.gabryel.internal;
+package com.gabryel.recurso;
 
 /**
  * This class represents a node in a linked list.
