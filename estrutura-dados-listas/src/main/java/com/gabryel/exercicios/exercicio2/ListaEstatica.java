@@ -14,8 +14,7 @@ public class ListaEstatica<T> {
 
     // Adiciona um elemento à lista
     public void add(T elemento) {
-        if (tamanho == elementos.length)
-            expandir();
+        if (tamanho == elementos.length) expandir();
 
         elementos[tamanho] = elemento;
         tamanho++;
@@ -23,8 +22,7 @@ public class ListaEstatica<T> {
 
     // Remove o elemento no índice especificado
     public void remove(int indice) {
-        if (indice < 0 || indice >= tamanho)
-            throw new IndexOutOfBoundsException();
+        if (indice < 0 || indice >= tamanho) throw new IndexOutOfBoundsException();
 
         for (int i = indice; i < tamanho - 1; i++) {
             elementos[i] = elementos[i + 1];
@@ -71,14 +69,10 @@ public class ListaEstatica<T> {
         novaLista.tamanho = tamanho + outraLista.tamanho;
         return novaLista;
     }
-    
+
     // Expande a capacidade do array
     private void expandir() {
-        T[] novoArray;
-        if (isDoubleInt(elementos.length * FATOR_EXPANSAO))
-           novoArray = (T[]) new Object[(int) (elementos.length * FATOR_EXPANSAO)];
-        else
-            novoArray = (T[]) new Object[(int) Math.round((elementos.length * FATOR_EXPANSAO) + 0.5)];
+        T[] novoArray = (T[]) new Object[(int) Math.round((elementos.length * FATOR_EXPANSAO) + 0.5)];
         System.arraycopy(elementos, 0, novoArray, 0, tamanho);
         elementos = novoArray;
     }
@@ -87,17 +81,4 @@ public class ListaEstatica<T> {
         return elementos[i];
     }
 
-    /**
-     * Returns whether the given double is an integer, within a certain tolerance
-     * range.
-     *
-     * @param d the double to check
-     * @return whether the double is an integer
-     */
-    private boolean isDoubleInt(double d) {
-        //select a "tolerance range" for being an integer
-        double TOLERANCE = 1E-5;
-        //do not use (int)d, due to weird floating point conversions!
-        return Math.abs(Math.floor(d) - d) < TOLERANCE;
-    }
 }
