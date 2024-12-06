@@ -16,10 +16,15 @@ public class Main {
         System.out.println(list.size());
         list.print();
 
+        System.out.println("\nVerificando se exite um elemento igual na lista: ");
+        System.out.println("Verificando Elemento 30: existe? " + list.contains(30));
+        System.out.println("Verificando Elemento 1000: existe? " + list.contains(1000));
+
+
         System.out.println("\nRemovendo um elemento da lista: ");
+        System.out.println(list.size());
         list.remove(30);
         list.print();
-
 
         System.out.println("\nRealizando a limpeza da lista: ");
         list.clear();

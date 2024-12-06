@@ -18,6 +18,15 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean contains(T element) {
+        if (head == null) return false;
+
+        Node<T> aux = head;
+
+        while (aux != null) {
+            if (aux.getInfo().equals(element)) return true;
+            aux = aux.getNext();
+        }
+
         return false;
     }
 
