@@ -13,7 +13,18 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public int indexOf(T element) {
-        return 0;
+        int indexOf = -1;
+        if (head == null) return indexOf;
+
+        Node<T> aux = head;
+        while (aux != null) {
+            indexOf++;
+            if (aux.getInfo().equals(element)) return indexOf;
+
+            aux = aux.getNext();
+        }
+
+        return -1;
     }
 
     @Override
@@ -60,7 +71,18 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return null;
+
+        if (index >= 0 && index < size) {
+            int indexCounter = 0;
+            Node<T> aux = head;
+            while (aux != null) {
+                if (indexCounter == index) return aux.getInfo();
+                aux = aux.getNext();
+                indexCounter++;
+            }
+        }
+
+        throw new IndexOutOfBoundsException("index is out of bounds of list size: " + this.size);
     }
 
     @Override
@@ -91,4 +113,5 @@ public class LinkedList<T> implements List<T> {
             aux = aux.getNext();
         }
     }
+
 }

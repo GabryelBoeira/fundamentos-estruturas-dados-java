@@ -20,10 +20,18 @@ public class Main {
         System.out.println("Verificando Elemento 30: existe? " + list.contains(30));
         System.out.println("Verificando Elemento 1000: existe? " + list.contains(1000));
 
+        System.out.println("\nPegar o indice de um elemento na lista: ");
+        System.out.println("Indice do elemento 30: " + list.indexOf(30));
+        System.out.println("Indice do elemento 30: " + list.indexOf(255));
+
+        System.out.println("\nBuscando um elemento na lista pelo indice: ");
+        System.out.println("Elemento na posicao 0: " + list.get(0));
+        System.out.println("Elemento na posicao 1: " + list.get(1));
+        System.out.println("Elemento na posicao 2: " + list.get(2));
 
         System.out.println("\nRemovendo um elemento da lista: ");
-        System.out.println(list.size());
         list.remove(30);
+        System.out.println(list.size());
         list.print();
 
         System.out.println("\nRealizando a limpeza da lista: ");
