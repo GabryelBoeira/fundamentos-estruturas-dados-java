@@ -55,4 +55,8 @@ public interface List<T>{
      */
     void clear();
 
+    /**
+     * Prints all elements in the list.
+     */
+    void print();
 }

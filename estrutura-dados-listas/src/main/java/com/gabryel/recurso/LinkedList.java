@@ -33,14 +33,28 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void add(T element) {
-        if (head == null) {
-            head = new Node<>(element);
-            size++;
+        Node<T> newNode = new Node<>(element);
+        if (head == null)
+            head = newNode;
+        else {
+            Node<T> aux = head;
+            while (aux.getNext() != null)
+                aux = aux.getNext();
+            aux.setNext(newNode);
         }
+        size++;
     }
 
     @Override
     public void clear() {
+    }
 
+    @Override
+    public void print() {
+        Node<T> aux = head;
+        while (aux != null) {
+            System.out.println(aux.getInfo());
+            aux = aux.getNext();
+        }
     }
 }
