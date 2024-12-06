@@ -1,7 +1,4 @@
-package com.gabryel;
-
-import com.gabryel.recurso.LinkedList;
-import com.gabryel.recurso.List;
+package com.gabryel.listaDinamica;
 
 public class Main {
 

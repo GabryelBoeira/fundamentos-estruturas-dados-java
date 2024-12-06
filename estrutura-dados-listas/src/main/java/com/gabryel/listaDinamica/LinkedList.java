@@ -1,4 +1,4 @@
-package com.gabryel.recurso;
+package com.gabryel.listaDinamica;
 
 public class LinkedList<T> implements List<T> {
 

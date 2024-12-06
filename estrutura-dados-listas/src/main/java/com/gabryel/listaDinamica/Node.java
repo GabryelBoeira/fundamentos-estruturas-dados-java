@@ -1,4 +1,4 @@
-package com.gabryel.recurso;
+package com.gabryel.listaDinamica;
 
 /**
  * This class represents a node in a linked list.
