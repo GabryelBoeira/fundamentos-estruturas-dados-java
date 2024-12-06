@@ -23,6 +23,20 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean remove(T element) {
+        if (head == null) return false;
+
+        //remove o primero elemento da lista
+        if (head.getInfo().equals(element)) {
+            head = head.getNext();
+            size--;
+            return true;
+        }
+
+
+
+
+
+
         return false;
     }
 

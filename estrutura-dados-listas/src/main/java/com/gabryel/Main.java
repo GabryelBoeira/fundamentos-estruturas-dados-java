@@ -12,13 +12,16 @@ public class Main {
         list.add(20);
         list.add(30);
 
+        System.out.println("Verficando lista inicial: ");
         System.out.println(list.size());
         list.print();
 
+        System.out.println("\nRemovendo o primeiro elemento da lista: ");
+        list.remove(30);
+        list.print();
 
 
-
-        System.out.println("Realizando a limpeza da lista: ");
+        System.out.println("\nRealizando a limpeza da lista: ");
         list.clear();
         System.out.println("Tamanho da lista apos limpeza: " + list.size());
     }
