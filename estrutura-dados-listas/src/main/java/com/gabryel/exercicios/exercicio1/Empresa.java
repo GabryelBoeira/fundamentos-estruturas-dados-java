@@ -17,7 +17,7 @@ public class Empresa {
      */
     public void adicionarCliente(Cliente cliente) {
         Node novoNo = new Node(cliente);
-        if (cliente == null)
+        if (cliente == null || clienteNo == null)
             clienteNo = novoNo;
         else {
             Node aux = clienteNo;
