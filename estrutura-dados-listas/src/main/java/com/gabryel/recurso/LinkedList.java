@@ -30,12 +30,21 @@ public class LinkedList<T> implements List<T> {
             head = head.getNext();
             size--;
             return true;
+        } else {
+            //remove um elemento da lista
+            Node<T> aux = head;
+            while (aux.getNext() != null) {
+                Node<T> next = aux.getNext();
+
+                if (next.getInfo().equals(element)) {
+                    aux.setNext(aux.getNext().getNext());
+                    size--;
+                    return true;
+                }
+
+                aux = aux.getNext();
+            }
         }
-
-
-
-
-
 
         return false;
     }

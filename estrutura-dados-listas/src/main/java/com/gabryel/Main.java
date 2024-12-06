@@ -16,7 +16,7 @@ public class Main {
         System.out.println(list.size());
         list.print();
 
-        System.out.println("\nRemovendo o primeiro elemento da lista: ");
+        System.out.println("\nRemovendo um elemento da lista: ");
         list.remove(30);
         list.print();
 
