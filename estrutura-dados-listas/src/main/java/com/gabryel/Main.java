@@ -14,5 +14,12 @@ public class Main {
 
         System.out.println(list.size());
         list.print();
+
+
+
+
+        System.out.println("Realizando a limpeza da lista: ");
+        list.clear();
+        System.out.println("Tamanho da lista apos limpeza: " + list.size());
     }
 }

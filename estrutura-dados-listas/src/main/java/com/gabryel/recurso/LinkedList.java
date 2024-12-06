@@ -47,6 +47,8 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void clear() {
+        head = null;
+        size = 0;
     }
 
     @Override
