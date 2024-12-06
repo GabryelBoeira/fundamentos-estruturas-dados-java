@@ -24,10 +24,15 @@ public class Main {
         System.out.println("Indice do elemento 30: " + list.indexOf(30));
         System.out.println("Indice do elemento 30: " + list.indexOf(255));
 
-        System.out.println("\nBuscando um elemento na lista pelo indice: ");
-        System.out.println("Elemento na posicao 0: " + list.get(0));
-        System.out.println("Elemento na posicao 1: " + list.get(1));
-        System.out.println("Elemento na posicao 2: " + list.get(2));
+        try {
+            System.out.println("\nBuscando um elemento na lista pelo indice: ");
+            System.out.println("Elemento na posicao 0: " + list.get(0));
+            System.out.println("Elemento na posicao 1: " + list.get(1));
+            System.out.println("Elemento na posicao 2: " + list.get(2));
+            System.out.println("Elemento na posicao 3: " + list.get(3));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage() + " - Indice nao encontrado.");
+        }
 
         System.out.println("\nRemovendo um elemento da lista: ");
         list.remove(30);
