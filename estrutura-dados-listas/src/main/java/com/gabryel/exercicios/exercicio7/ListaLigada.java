@@ -57,7 +57,7 @@ public class ListaLigada {
 
         return novaLista;
     }
-    
+
     /**
      * Compares two linked lists to determine if they are equal.
      * <p>
