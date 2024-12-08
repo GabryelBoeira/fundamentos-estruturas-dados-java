@@ -38,6 +38,16 @@ public class StackImpl<T> implements Stack<T> {
 
     @Override
     public int search(T element) {
-        return 0;
+        int indexOf = -1;
+        Node<T> auxNode = this.top;
+
+        while (auxNode != null) {
+            indexOf++;
+            if (auxNode.getInfo().equals(element))
+                return indexOf;
+            auxNode = auxNode.getNext();
+        }
+
+        return indexOf;
     }
 }
