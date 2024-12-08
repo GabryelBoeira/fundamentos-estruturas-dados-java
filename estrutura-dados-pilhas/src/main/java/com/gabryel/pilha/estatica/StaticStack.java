@@ -5,7 +5,7 @@ import com.gabryel.pilha.Stack;
 public class StaticStack<T> implements Stack<T> {
 
     private T[] elements;
-    private int size;
+    private int size = 0;
     private final int stackSize;
 
     public StaticStack(int size) {
@@ -15,7 +15,13 @@ public class StaticStack<T> implements Stack<T> {
 
     @Override
     public T push(T element) {
-        return null;
+        if (this.size >= this.stackSize)
+            throw new IndexOutOfBoundsException("The Stack is already full: " + this.size);
+
+        this.elements[this.size] = element;
+        this.size++;
+
+        return this.peek();
     }
 
     @Override
