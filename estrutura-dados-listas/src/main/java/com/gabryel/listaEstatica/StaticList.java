@@ -41,7 +41,11 @@ public class StaticList<T> implements List<T> {
 
     @Override
     public void add(T element) {
+        if (this.size >= this.listSize)
+            throw new IndexOutOfBoundsException("The list is already full: " + this.size);
 
+        this.elements[this.size] = element;
+        this.size++;
     }
 
     @Override
