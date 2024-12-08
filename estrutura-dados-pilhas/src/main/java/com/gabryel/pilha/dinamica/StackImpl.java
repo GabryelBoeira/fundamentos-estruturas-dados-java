@@ -4,11 +4,19 @@ import com.gabryel.pilha.Stack;
 
 public class StackImpl<T> implements Stack<T> {
 
-    Node<T> top;
-    
+    private Node<T> top;
+
     @Override
     public T push(T element) {
-        return null;
+        Node<T> auxNode = new Node<>(element);
+
+        if (this.top == null)
+            this.top = auxNode;
+        else {
+            auxNode.setNext(this.top);
+            this.top = auxNode;
+        }
+        return this.peek();
     }
 
     @Override
@@ -20,12 +28,12 @@ public class StackImpl<T> implements Stack<T> {
     public T peek() {
         if (this.isEmpty()) return null;
 
-        return top.getInfo();
+        return this.top.getInfo();
     }
 
     @Override
     public boolean isEmpty() {
-        return top == null;
+        return this.top == null;
     }
 
     @Override
