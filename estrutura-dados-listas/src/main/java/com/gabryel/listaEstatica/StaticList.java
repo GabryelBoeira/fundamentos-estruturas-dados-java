@@ -34,7 +34,28 @@ public class StaticList<T> implements List<T> {
 
     @Override
     public boolean remove(T element) {
-        return false;
+        int indexToRemove = this.indexOf(element);
+        if (indexToRemove == -1) return false;
+
+        int lastIndex = this.size - 1;
+        //remove o ultimo elemento da lista
+        if (indexToRemove == lastIndex) {
+            this.elements[indexToRemove] = null;
+            this.size--;
+            return true;
+        }
+
+        //remove um elemento da lista
+        for (int i = indexToRemove; i < lastIndex; i++) {
+            this.elements[i] = this.elements[i + 1];
+            if (i + 1 == lastIndex) {
+                this.elements[i + 1] = null;
+                break;
+            }
+        }
+
+        this.size--;
+        return true;
     }
 
     @Override
@@ -62,6 +83,8 @@ public class StaticList<T> implements List<T> {
 
     @Override
     public void print() {
-
+        for (int i = 0; i < this.size; i++) {
+            System.out.println(this.elements[i]);
+        }
     }
 }

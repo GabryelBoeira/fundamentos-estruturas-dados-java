@@ -16,5 +16,11 @@ public class Main {
 
         System.out.println("\nContains item 3: " + staticList.contains(3));
 
+        System.out.println("\nRemove item 3: " + staticList.remove(3));
+        staticList.add(3);
+        staticList.add(4);
+        System.out.println("Remove item 3: " + staticList.remove(3));
+        staticList.print();
+
     }
 }
