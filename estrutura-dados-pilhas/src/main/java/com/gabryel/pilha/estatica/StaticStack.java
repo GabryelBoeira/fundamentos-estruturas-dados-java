@@ -26,7 +26,13 @@ public class StaticStack<T> implements Stack<T> {
 
     @Override
     public T pop() {
-        return null;
+        if (this.isEmpty()) return null;
+
+        T element = this.peek();
+        this.elements[this.size - 1] = null;
+        this.size--;
+
+        return element;
     }
 
     @Override
@@ -36,7 +42,7 @@ public class StaticStack<T> implements Stack<T> {
 
     @Override
     public boolean isEmpty() {
-        return this.elements.length == 0;
+        return this.size == 0;
     }
 
     @Override
