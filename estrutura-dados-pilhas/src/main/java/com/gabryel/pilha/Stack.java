@@ -31,13 +31,6 @@ public interface Stack<T> {
     boolean isEmpty();
 
     /**
-     * Returns the number of elements in the stack.
-     *
-     * @return The number of elements in the stack.
-     */
-    int size();
-
-    /**
      * Searches for the element in the stack and returns its position.
      * <p>
      * The position is zero-based, so the top element is at position 0.

@@ -10,35 +10,30 @@ public class StackImpl<T> implements Stack<T> {
     public T push(T element) {
         Node<T> auxNode = new Node<>(element);
 
-        if (this.top == null)
-            this.top = auxNode;
-        else {
+        if (this.top != null)
             auxNode.setNext(this.top);
-            this.top = auxNode;
-        }
+
+        this.top = auxNode;
         return this.peek();
     }
 
     @Override
     public T pop() {
-        return null;
+        this.isEmpty();
+
+        T info = this.top.getInfo();
+        this.top = this.top.getNext();
+        return info;
     }
 
     @Override
     public T peek() {
-        if (this.isEmpty()) return null;
-
-        return this.top.getInfo();
+        return this.isEmpty() ? null : this.top.getInfo();
     }
 
     @Override
     public boolean isEmpty() {
         return this.top == null;
-    }
-
-    @Override
-    public int size() {
-        return 0;
     }
 
     @Override
