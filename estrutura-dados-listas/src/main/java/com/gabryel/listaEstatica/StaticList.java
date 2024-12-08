@@ -1,5 +1,7 @@
 package com.gabryel.listaEstatica;
 
+import java.util.stream.IntStream;
+
 public class StaticList<T> implements List<T> {
 
     private T[] elements;
@@ -18,12 +20,16 @@ public class StaticList<T> implements List<T> {
 
     @Override
     public int indexOf(T element) {
-        return 0;
+        return IntStream
+                .range(0, this.size)
+                .filter(index -> this.elements[index].equals(element))
+                .findFirst()
+                .orElse(-1);
     }
 
     @Override
     public boolean contains(T element) {
-        return false;
+        return this.indexOf(element) != -1;
     }
 
     @Override
