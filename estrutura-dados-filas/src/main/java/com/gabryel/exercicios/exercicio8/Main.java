@@ -1,4 +1,7 @@
-package com.gabryel.exercicos.exercicio8;
+package com.gabryel.exercicios.exercicio8;
+
+import com.gabryel.exercicos.exercicio8.Aviao;
+import com.gabryel.exercicos.exercicio8.FilaDecolagem;
 
 public class Main {
 

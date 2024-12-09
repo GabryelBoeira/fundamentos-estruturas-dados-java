@@ -1,9 +1,9 @@
-package com.gabryel.exercicios.execicio4;
+package com.gabryel.exercicios.exercicio4;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-import static com.gabryel.exercicios.execicio4.FilaUtils.removerElemento;
+import static com.gabryel.exercicios.exercicio4.FilaUtils.removerElemento;
 
 public class Main {
 

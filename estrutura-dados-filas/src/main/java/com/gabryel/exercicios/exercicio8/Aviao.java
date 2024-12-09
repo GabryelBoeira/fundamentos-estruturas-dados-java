@@ -1,4 +1,4 @@
-package com.gabryel.exercicos.exercicio8;
+package com.gabryel.exercicios.exercicio8;
 
 public class Aviao {
 

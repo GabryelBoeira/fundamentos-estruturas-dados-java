@@ -1,4 +1,6 @@
-package com.gabryel.exercicos.exercicio8;
+package com.gabryel.exercicios.exercicio8;
+
+import com.gabryel.exercicos.exercicio8.Aviao;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -1,4 +1,4 @@
-package com.gabryel.exercicios.execicio4;
+package com.gabryel.exercicios.exercicio4;
 
 
 import java.util.LinkedList;
