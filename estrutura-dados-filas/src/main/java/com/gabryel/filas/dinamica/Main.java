@@ -17,10 +17,9 @@ public class Main
         System.out.println("Remover elementos da fila: ");
         System.out.println(queue.dequeue());
         System.out.println(queue.dequeue());
-        System.out.println(queue.size());
+        System.out.println("Tamanho da fila: " + queue.size());
 
-
-
+        System.out.println("Pegar o primeiro elemento: " + queue.peek());
 
     }
 }

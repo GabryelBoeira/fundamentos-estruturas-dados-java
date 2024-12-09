@@ -25,7 +25,7 @@ public class DinamicQueue<T> implements Queue<T> {
 
     @Override
     public T dequeue() {
-        if (this.head == null) throw new NoSuchElementException("Queue is empty");
+        if (this.head == null) return null;
 
         T info = this.head.getInfo();
         this.head = this.head.getNext();
@@ -38,7 +38,9 @@ public class DinamicQueue<T> implements Queue<T> {
 
     @Override
     public T peek() {
-        return null;
+        if (this.head == null) return null;
+
+        return this.head.getInfo();
     }
 
     @Override
