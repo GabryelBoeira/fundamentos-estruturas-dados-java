@@ -16,7 +16,11 @@ public class StaticQueue<T> implements Queue<T> {
 
     @Override
     public void enqueue(T element) {
+        if (this.size >= this.queueSize)
+            throw new IndexOutOfBoundsException("The Stack is already full: " + this.size);
 
+        this.elements[this.size] = element;
+        this.size++;
     }
 
     @Override
