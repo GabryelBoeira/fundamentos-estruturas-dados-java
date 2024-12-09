@@ -5,7 +5,7 @@ import com.gabryel.filas.Queue;
 public class StaticQueue<T> implements Queue<T> {
 
     private T[] elements;
-    private int size;
+    private int size ;
     private final int queueSize;
 
     public StaticQueue(int queueSize) {
@@ -25,7 +25,20 @@ public class StaticQueue<T> implements Queue<T> {
 
     @Override
     public T dequeue() {
-        return null;
+        T element = this.elements[0];
+        int lastIndex = this.size - 1;
+
+        for(int currentIndex = 0; currentIndex < this.size; currentIndex++){
+            this.elements[currentIndex] = this.elements[currentIndex + 1];
+
+            if(currentIndex + 1 == lastIndex){
+                this.elements[currentIndex + 1] = null;
+                break;
+            }
+        }
+        this.size--;
+
+        return element;
     }
 
     @Override
