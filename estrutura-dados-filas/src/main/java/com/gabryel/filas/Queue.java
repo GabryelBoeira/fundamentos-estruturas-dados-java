@@ -16,6 +16,15 @@ public interface Queue<T> {
      */
     T dequeue();
 
+    /**
+     * Returns the element at the front of the queue without removing it.
+     *
+     * @return The element at the front of the queue, or null if the queue is empty.
+     */
+    T peek();
+
     int size();
+
+
 
 }

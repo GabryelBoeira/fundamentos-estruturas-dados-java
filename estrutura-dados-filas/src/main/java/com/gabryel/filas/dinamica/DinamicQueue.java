@@ -27,6 +27,11 @@ public class DinamicQueue<T> implements Queue<T> {
     }
 
     @Override
+    public T peek() {
+        return null;
+    }
+
+    @Override
     public int size() {
         return size;
     }
