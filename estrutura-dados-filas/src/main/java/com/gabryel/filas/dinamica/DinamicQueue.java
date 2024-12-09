@@ -2,6 +2,8 @@ package com.gabryel.filas.dinamica;
 
 import com.gabryel.filas.Queue;
 
+import java.util.NoSuchElementException;
+
 public class DinamicQueue<T> implements Queue<T> {
 
     private Node<T> head;
@@ -23,7 +25,15 @@ public class DinamicQueue<T> implements Queue<T> {
 
     @Override
     public T dequeue() {
-        return null;
+        if (this.head == null) throw new NoSuchElementException("Queue is empty");
+
+        T info = this.head.getInfo();
+        this.head = this.head.getNext();
+        this.size--;
+
+        if (this.size == 0) this.tail = null;
+
+        return info;
     }
 
     @Override
