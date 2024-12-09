@@ -10,6 +10,15 @@ public class DinamicQueue<T> implements Queue<T> {
 
     @Override
     public void enqueue(T element) {
+        Node<T> auxNode = new Node<>(element);
+
+        if (this.head == null)
+            this.head = auxNode;
+        else
+            this.tail.setNext(auxNode);
+
+        this.tail = auxNode;
+        this.size++;
     }
 
     @Override
@@ -19,7 +28,7 @@ public class DinamicQueue<T> implements Queue<T> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
 }
