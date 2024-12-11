@@ -13,6 +13,11 @@ public class Main {
         tree.add(3);
         tree.add(20);
 
-        System.out.println(tree.preOrder());
+        System.out.println("Quantidade de elementos da arvore: " + tree.size());
+        System.out.println("Removendo o elemento -41: " + tree.remove(tree.search(14), -41).getInfo());
+        System.out.println("Quantidade de elementos da arvore:" + tree.size());
+
+
+
     }
 }

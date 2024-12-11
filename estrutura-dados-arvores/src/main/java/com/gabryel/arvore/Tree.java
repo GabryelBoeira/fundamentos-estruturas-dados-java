@@ -34,12 +34,28 @@ public interface Tree <T extends Comparable<T>> {
     int nodeDepth(T element);
 
     /**
+     * Retorna o número de elementos na árvore.
+     *
+     * @return o número de elementos na árvore
+     */
+    int size();
+
+    /**
      * Busca um elemento na árvore.
      *
      * @param element Elemento a ser buscado
      * @return o nó que contém o elemento se o elemento for encontrado, null caso contrário
      */
     TreeNode<T> search(T element);
+
+    /**
+     * Remove um elemento da arvore.
+     *
+     * @param root     A raiz da arvore
+     * @param element  O elemento a ser removido
+     * @return a raiz da arvore apos a remocao
+     */
+    TreeNode<T> remove(TreeNode<T> root, T element);
 
     /**
      * Retorna uma lista com todos os elementos da arvore, ordenados em
