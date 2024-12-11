@@ -1,7 +1,9 @@
 package com.gabryel.execicios.exercicio6;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class HashTable {
     private List<Integer>[] table;
@@ -23,9 +25,8 @@ public class HashTable {
     public int countCollisions() {
         int collisions = 0;
         for (List<Integer> list : table) {
-            if (list.size() > 1) {
+            if (list.size() > 1)
                 collisions += list.size() - 1; // Cada elemento extra representa uma colisão
-            }
         }
         return collisions;
     }
