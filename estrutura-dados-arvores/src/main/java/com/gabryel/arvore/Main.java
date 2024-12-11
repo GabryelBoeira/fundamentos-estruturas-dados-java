@@ -21,8 +21,11 @@ public class Main {
         System.out.println("\nExibindo elemento da arvore: " + tree.search(14).getInfo());
 
         System.out.println("\nExibindo a arvore em Pre Order : " + tree.preOrder());
-        System.out.println("\nExibindo a arvore em In Order : " + tree.inOrder());
-        System.out.println("\nExibindo a arvore em Post Order : " + tree.postOrder());
+        System.out.println("Exibindo a arvore em In Order : " + tree.inOrder());
+        System.out.println("Exibindo a arvore em Post Order : " + tree.postOrder());
+
+        System.out.println("\nExibindo a profundidade do elemento 14: " + tree.nodeDepth(14));
+        System.out.println("Exibindo a profundidade do elemento 30: " + tree.nodeDepth(30));
 
     }
 }

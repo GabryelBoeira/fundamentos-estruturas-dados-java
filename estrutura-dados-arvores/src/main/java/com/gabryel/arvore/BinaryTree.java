@@ -51,7 +51,7 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public int nodeDepth(T element) {
-        return 0;
+        return evaluateNodeDepth(this.root, element, 0);
     }
 
     @Override
@@ -216,5 +216,29 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
         elements.add(rootNode.getInfo());
     }
 
+    /**
+     * Evaluates the depth of a given node in the binary tree.
+     * The depth of a node is the number of edges from the root to the node.
+     * The root node has depth 0.
+     *
+     * @param node        the node for which the depth is evaluated
+     * @param element     the element to search for
+     * @param depthCounter the current depth
+     * @return the depth of the node if the element is found, -1 otherwise
+     */
+    private int evaluateNodeDepth(TreeNode<T> node, T element, int depthCounter) {
+        if (node == null)
+            return -1;
+
+        int comparingResult = element.compareTo(node.getInfo());
+
+
+        if (comparingResult == 0) return depthCounter;
+
+        if (comparingResult > 0)
+            return evaluateNodeDepth(node.getRightNode(), element, depthCounter + 1);
+        else
+            return evaluateNodeDepth(node.getLeftNode(), element, depthCounter + 1);
+    }
 
 }
