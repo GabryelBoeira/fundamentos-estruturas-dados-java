@@ -10,10 +10,10 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
     public void add(T element) {
         TreeNode<T> newNode = new TreeNode<>(element);
 
-        if (root == null)
-            root = newNode;
+        if (this.root == null)
+            this.root = newNode;
         else {
-            TreeNode<T> auxNode = root;
+            TreeNode<T> auxNode = this.root;
 
             while (auxNode != null) {
                 T info = auxNode.getInfo();
@@ -46,39 +46,39 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public int getTreeHeight() {
-        return 0;
+        return this.evaluateTreeHeight(this.root, -1);
     }
 
     @Override
     public int nodeDepth(T element) {
-        return evaluateNodeDepth(this.root, element, 0);
+        return this.evaluateNodeDepth(this.root, element, 0);
     }
 
     @Override
     public TreeNode<T> search(T element) {
-        if (root != null)
-            return binarySearch(root, element);
+        if (this.root != null)
+            return binarySearch(this.root, element);
         return null;
     }
 
     @Override
     public List<T> preOrder() {
         List<T> preOrderElements = new ArrayList<>();
-        preOrderNavigator(root, preOrderElements);
+        preOrderNavigator(this.root, preOrderElements);
         return preOrderElements;
     }
 
     @Override
     public List<T> inOrder() {
         List<T> inOrderElements = new ArrayList<>();
-        inOrderNavigator(root, inOrderElements);
+        inOrderNavigator(this.root, inOrderElements);
         return inOrderElements;
     }
 
     @Override
     public List<T> postOrder() {
         List<T> postOrderElements = new ArrayList<>();
-        postOrderNavigator(root, postOrderElements);
+        postOrderNavigator(this.root, postOrderElements);
         return postOrderElements;
     }
 
@@ -239,6 +239,22 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
             return evaluateNodeDepth(node.getRightNode(), element, depthCounter + 1);
         else
             return evaluateNodeDepth(node.getLeftNode(), element, depthCounter + 1);
+    }
+
+    /**
+     * Evaluates the height of a given subtree.
+     * The height of a subtree is the maximum depth of any node in the subtree.
+     * The root node has height 0.
+     *
+     * @param node        the root node of the subtree to traverse
+     * @param depthCounter the current depth
+     * @return the height of the subtree
+     */
+    private int evaluateTreeHeight(TreeNode<T> node, int depthCounter) {
+        if (node == null)
+            return depthCounter;
+
+        return Math.max(evaluateTreeHeight(node.getLeftNode(), depthCounter + 1), evaluateTreeHeight(node.getRightNode(), depthCounter + 1));
     }
 
 }

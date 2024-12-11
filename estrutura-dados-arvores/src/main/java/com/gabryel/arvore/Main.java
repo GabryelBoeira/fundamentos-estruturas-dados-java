@@ -27,5 +27,6 @@ public class Main {
         System.out.println("\nExibindo a profundidade do elemento 14: " + tree.nodeDepth(14));
         System.out.println("Exibindo a profundidade do elemento 30: " + tree.nodeDepth(30));
 
+        System.out.println("\nExibindo a altura da arvore: " + tree.getTreeHeight());
     }
 }
