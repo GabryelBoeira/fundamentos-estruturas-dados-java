@@ -1,7 +1,6 @@
 package com.gabryel.arvore;
 
-import org.w3c.dom.Node;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
@@ -64,17 +63,23 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public List<T> preOrder() {
-        return List.of();
+        List<T> preOrderElements = new ArrayList<>();
+        preOrderNavigator(root, preOrderElements);
+        return preOrderElements;
     }
 
     @Override
     public List<T> inOrder() {
-        return List.of();
+        List<T> inOrderElements = new ArrayList<>();
+        inOrderNavigator(root, inOrderElements);
+        return inOrderElements;
     }
 
     @Override
     public List<T> postOrder() {
-        return List.of();
+        List<T> postOrderElements = new ArrayList<>();
+        postOrderNavigator(root, postOrderElements);
+        return postOrderElements;
     }
 
     @Override
@@ -144,10 +149,10 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
      * Performs a binary search of a given subtree to find a node
      * containing a given element.
      *
-     * @param node the root node of the subtree to search
+     * @param node    the root node of the subtree to search
      * @param element the element to search for
      * @return the node containing the element, or null if the element
-     *         is not found
+     * is not found
      */
     private TreeNode<T> binarySearch(TreeNode<T> node, T element) {
         if (node == null) return null;
@@ -162,5 +167,54 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
         else
             return binarySearch(node.getLeftNode(), element);
     }
+
+    /**
+     * Recursively traverses the binary tree in pre-order.
+     * In pre-order traversal, the root node is processed first,
+     * followed by the left subtree, and finally the right subtree.
+     *
+     * @param rootNode the root node of the subtree to traverse
+     * @param elements the list to which the elements are added in pre-order
+     */
+    private void preOrderNavigator(TreeNode<T> rootNode, List<T> elements) {
+        if (rootNode == null) return;
+
+        elements.add(rootNode.getInfo());
+        preOrderNavigator(rootNode.getLeftNode(), elements);
+        preOrderNavigator(rootNode.getRightNode(), elements);
+    }
+
+    /**
+     * Recursively traverses the binary tree in in-order.
+     * In in-order traversal, the left subtree is processed first,
+     * followed by the root node, and finally the right subtree.
+     *
+     * @param rootNode the root node of the subtree to traverse
+     * @param elements the list to which the elements are added in in-order
+     */
+    private void inOrderNavigator(TreeNode<T> rootNode, List<T> elements) {
+        if (rootNode == null) return;
+
+        preOrderNavigator(rootNode.getLeftNode(), elements);
+        elements.add(rootNode.getInfo());
+        preOrderNavigator(rootNode.getRightNode(), elements);
+    }
+
+    /**
+     * Recursively traverses the binary tree in post-order.
+     * In post-order traversal, the left subtree is processed first,
+     * followed by the right subtree, and finally the root node.
+     *
+     * @param rootNode the root node of the subtree to traverse
+     * @param elements the list to which the elements are added in post-order
+     */
+    private void postOrderNavigator(TreeNode<T> rootNode, List<T> elements) {
+        if (rootNode == null) return;
+
+        preOrderNavigator(rootNode.getLeftNode(), elements);
+        preOrderNavigator(rootNode.getRightNode(), elements);
+        elements.add(rootNode.getInfo());
+    }
+
 
 }

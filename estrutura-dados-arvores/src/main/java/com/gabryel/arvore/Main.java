@@ -12,12 +12,17 @@ public class Main {
         tree.add(6);
         tree.add(3);
         tree.add(20);
+        tree.add(30);
 
         System.out.println("Quantidade de elementos da arvore: " + tree.size());
         System.out.println("Removendo o elemento -41: " + tree.remove(tree.search(14), -41).getInfo());
         System.out.println("Quantidade de elementos da arvore:" + tree.size());
 
+        System.out.println("\nExibindo elemento da arvore: " + tree.search(14).getInfo());
 
+        System.out.println("\nExibindo a arvore em Pre Order : " + tree.preOrder());
+        System.out.println("\nExibindo a arvore em In Order : " + tree.inOrder());
+        System.out.println("\nExibindo a arvore em Post Order : " + tree.postOrder());
 
     }
 }
