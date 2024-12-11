@@ -41,6 +41,17 @@ public class HashSetOpen<T> implements Set<T> {
 
     @Override
     public boolean contains(T value) {
+        int index = getHash(value);
+        int checkIndex = 0;
+
+        while (checkIndex < table.length) {
+            if (table[index] != null && table[index].equals(value))
+                return true;
+
+            index = (index + 1) % table.length;
+            checkIndex++;
+        }
+
         return false;
     }
 
@@ -65,6 +76,17 @@ public class HashSetOpen<T> implements Set<T> {
      */
     private boolean isLoadFactorExceeded() {
         return (double) size / table.length > LOAD_FACTOR;
+    }
+
+    /**
+     * Returns the hash value of the given element. This hash value is used to
+     * calculate the index of the element in the backing array.
+     *
+     * @param element the element to hash
+     * @return the hash value of the given element
+     */
+    private int getHash(T element) {
+        return Math.abs(element.hashCode()) % table.length;
     }
 
 }
