@@ -42,6 +42,20 @@ public class HashSetOpen<T> implements Set<T> {
 
     @Override
     public boolean remove(T value) {
+        int index = this.getHash(value);
+        int checkIndex = 0;
+
+        while (checkIndex < table.length) {
+            if (table[index] != null && table[index].equals(value)) {
+                table[index] = null;
+                size--;
+                return true;
+            }
+
+            index = (index + 1) % table.length;
+            checkIndex++;
+        }
+
         return false;
     }
 
