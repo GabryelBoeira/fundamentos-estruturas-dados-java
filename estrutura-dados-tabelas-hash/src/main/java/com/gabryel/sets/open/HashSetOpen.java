@@ -25,7 +25,13 @@ public class HashSetOpen<T> implements Set<T> {
 
     @Override
     public void add(T value) {
+        if (this.contains(value))
+            return;
 
+        if (isLoadFactorExceeded())
+            this.resizeTable();
+
+        this.addToTable(value);
     }
 
     @Override
@@ -41,7 +47,7 @@ public class HashSetOpen<T> implements Set<T> {
 
     @Override
     public boolean contains(T value) {
-        int index = getHash(value);
+        int index = this.getHash(value);
         int checkIndex = 0;
 
         while (checkIndex < table.length) {
@@ -89,4 +95,31 @@ public class HashSetOpen<T> implements Set<T> {
         return Math.abs(element.hashCode()) % table.length;
     }
 
+    /**
+     * Resizes the backing array (table) by doubling its current length.
+     * This method is called when the load factor exceeds a predefined threshold.
+     * It creates a new array with double the size, rehashes all existing elements,
+     * and redistributes them into the new array to maintain the properties of the hash set.
+     */
+    private void resizeTable() {
+        T[] novoArray = (T[]) new Object[(int) (this.table.length * 2)];
+        System.arraycopy(this.table, 0, novoArray, 0, size);
+        this.table = novoArray;
+    }
+
+    /**
+     * Adds the given element to the backing array (table) at the appropriate
+     * index. This method does not check if the element is already present in the
+     * set, as that is handled by the add method.
+     *
+     * @param value the element to add to the set
+     */
+    private void addToTable(T value) {
+        int index = this.getHash(value);
+        while (table[index] != null) {
+            index = (index + 1) % table.length;
+        }
+        table[index] = value;
+        size++;
+    }
 }
