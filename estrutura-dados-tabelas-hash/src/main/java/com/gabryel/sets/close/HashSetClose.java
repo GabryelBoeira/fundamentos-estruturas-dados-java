@@ -50,7 +50,13 @@ public class HashSetClose<T> implements Set<T> {
 
     @Override
     public boolean contains(T value) {
-        return false;
+        int index = this.getHash(value);
+        LinkedList<T> element = this.table[index];
+
+        if (element == null)
+            return false;
+
+        return element.contains(value);
     }
 
     @Override
