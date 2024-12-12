@@ -12,12 +12,18 @@ public class HashSetClose<T> implements Set<T> {
     private int size;
 
     public HashSetClose() {
-       this.clear();
+        this.clear();
     }
 
     @Override
     public void add(T value) {
+        if (this.contains(value))
+            return;
 
+        if (isLoadFactorExceeded())
+            this.resizeTable();
+
+        this.addToTable(value);
     }
 
     @Override
@@ -32,7 +38,14 @@ public class HashSetClose<T> implements Set<T> {
 
     @Override
     public boolean remove(T value) {
-        return false;
+        int index = this.getHash(value);
+
+        if (this.table[index] == null || !this.table[index].contains(value))
+            return false;
+
+        table[index].remove(value);
+        this.size--;
+        return true;
     }
 
     @Override
@@ -72,5 +85,33 @@ public class HashSetClose<T> implements Set<T> {
      */
     private int getHash(T element) {
         return Math.abs(element.hashCode()) % table.length;
+    }
+
+    private void addToTable(T value) {
+        int index = this.getHash(value);
+        if (this.table[index] == null)
+            this.table[index] = new LinkedList<>();
+
+        this.table[index].add(value);
+        this.size++;
+    }
+
+    /**
+     * Resizes the backing array (table) by doubling its current length.
+     * This method is called when the load factor exceeds a predefined threshold.
+     * It creates a new array with double the size, rehashes all existing elements,
+     * and redistributes them into the new array to maintain the properties of the hash set.
+     */
+    private void resizeTable() {
+        Object[] oldTable = this.table;
+        this.table = new LinkedList[this.table.length * 2];
+        this.size = 0;
+
+        for (Object entry : oldTable) {
+            if (entry == null) continue;
+
+            LinkedList<T> element = (LinkedList<T>) entry;
+            for (T value : element) this.addToTable(value);
+        }
     }
 }
