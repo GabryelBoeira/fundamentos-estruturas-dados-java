@@ -60,11 +60,26 @@ public class HashMapOpen<K, V> implements Map<K, V> {
 
     @Override
     public boolean containsKey(K key) {
+        int index = this.getHash(key);
+        int checkIndex = 0;
+
+        while (checkIndex < this.table.length) {
+            if (this.table[index] != null && this.table[index].getKey().equals(key))
+                return true;
+
+            index = (index + 1) % this.table.length;
+            checkIndex++;
+        }
         return false;
     }
 
     @Override
     public boolean containsValue(V value) {
+
+        for (Entry<K, V> entry : this.table) {
+            if (entry != null && entry.getValue().equals(value))
+                return true;
+        }
         return false;
     }
 
