@@ -41,4 +41,11 @@ public class Entry<K, V> {
         return Objects.hash(key, value);
     }
 
+    @Override
+    public String toString() {
+        return "Entry{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+    }
 }

@@ -4,6 +4,7 @@ import com.gabryel.listaDinamica.LinkedList;
 import com.gabryel.maps.Entry;
 import com.gabryel.maps.Map;
 import com.gabryel.sets.Set;
+import com.gabryel.sets.open.HashSetOpen;
 
 import java.util.Arrays;
 
@@ -39,7 +40,7 @@ public class HashMapClose<K, V> implements Map<K, V> {
         int index = this.getHash(key);
 
         for (Entry<K, V> entry : this.table[index].toArray(Entry.class)) {
-            if (entry.getKey().equals(key)) {
+            if (entry != null && entry.getKey().equals(key)) {
                 this.table[index].remove(entry);
                 this.size--;
                 return entry.getValue();
@@ -61,7 +62,7 @@ public class HashMapClose<K, V> implements Map<K, V> {
     public boolean containsValue(V value) {
         for (LinkedList<Entry<K, V>> element : this.table) {
             for (Entry<K, V> entry : element.toArray(Entry.class)) {
-                if (entry.getValue().equals(value))
+                if (entry != null && entry.getValue().equals(value))
                     return true;
             }
         }
@@ -70,12 +71,28 @@ public class HashMapClose<K, V> implements Map<K, V> {
 
     @Override
     public Set<K> keySet() {
-        return null;
+        Set<K> keySet =  new HashSetOpen<>(this.size);
+
+        for (LinkedList<Entry<K, V>> element : this.table) {
+            for (Entry<K, V> entry : element.toArray(Entry.class)) {
+                if (entry != null)
+                    keySet.add(entry.getKey());
+            }
+        }
+        return keySet;
     }
 
     @Override
     public Set<Entry<K, V>> entrySet() {
-        return null;
+        Set<Entry<K, V>> entrySet =  new HashSetOpen<>(this.size);
+
+        for (LinkedList<Entry<K, V>> element : this.table) {
+            for (Entry<K, V> entry : element.toArray(Entry.class)) {
+                if (entry != null)
+                    entrySet.add(entry);
+            }
+        }
+        return entrySet;
     }
 
     @Override

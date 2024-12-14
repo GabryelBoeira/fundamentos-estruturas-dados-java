@@ -20,7 +20,7 @@ public class HashSetOpen<T> implements Set<T> {
             throw new IllegalArgumentException("Initial capacity should be greater than zero: " + initialCapacity);
 
         this.INITIAL_CAPACITY = initialCapacity;
-        table = new Object[this.INITIAL_CAPACITY];
+        this.table = new Object[this.INITIAL_CAPACITY];
     }
 
     @Override
