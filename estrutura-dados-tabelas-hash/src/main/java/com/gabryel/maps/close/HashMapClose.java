@@ -51,11 +51,20 @@ public class HashMapClose<K, V> implements Map<K, V> {
 
     @Override
     public boolean containsKey(K key) {
-        return false;
+        int index = this.getHash(key);
+
+        return Arrays.stream(this.table[index].toArray(Entry.class))
+                .anyMatch(entry -> entry.getKey().equals(key));
     }
 
     @Override
     public boolean containsValue(V value) {
+        for (LinkedList<Entry<K, V>> element : this.table) {
+            for (Entry<K, V> entry : element.toArray(Entry.class)) {
+                if (entry.getValue().equals(value))
+                    return true;
+            }
+        }
         return false;
     }
 

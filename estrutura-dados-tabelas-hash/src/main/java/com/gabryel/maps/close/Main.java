@@ -8,6 +8,5 @@ public class Main {
         Map<String, Integer> hashMap = new HashMapClose<>();
         hashMap.put("Gabryel", 1);
         System.out.println(hashMap.get("Gabryel"));
-
     }
 }
