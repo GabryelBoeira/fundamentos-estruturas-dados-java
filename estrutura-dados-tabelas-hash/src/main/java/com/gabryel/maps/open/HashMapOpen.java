@@ -22,7 +22,10 @@ public class HashMapOpen<K, V> implements Map<K, V> {
 
     @Override
     public V put(K key, V value) {
-        return null;
+        if (this.isLoadFactorExceeded())
+            this.resizeTable();
+
+        return this.addOrUpdateToTable(key, value);
     }
 
     @Override
@@ -121,4 +124,47 @@ public class HashMapOpen<K, V> implements Map<K, V> {
         return Math.abs(key.hashCode()) % table.length;
     }
 
+    /**
+     * Checks if the current load factor exceeds the predefined threshold.
+     * This method calculates the load factor by dividing the number of elements
+     * in the set (size) by the current length of the backing array (table).
+     * It then compares this value to a predefined LOAD_FACTOR to determine if
+     * the load factor has been exceeded.
+     *
+     * @return true if the load factor is exceeded, false otherwise
+     */
+    private boolean isLoadFactorExceeded() {
+        return (float) this.size / this.table.length > this.LOAD_FACTOR;
+    }
+
+    /**
+     * Resizes the backing array (table) by doubling its current length.
+     * This method is called when the load factor exceeds a predefined threshold.
+     * It creates a new array with double the size, rehashes all existing elements,
+     * and redistributes them into the new array to maintain the properties of the hash set.
+     */
+    private void resizeTable() {
+        Entry<K, V>[] novoArray = (Entry<K, V>[]) new Object[this.table.length * 2];
+        System.arraycopy(this.table, 0, novoArray, 0, this.size);
+        this.table = novoArray;
+    }
+
+    private V addOrUpdateToTable(K key, V value) {
+        int index = this.getHash(key);
+        Entry<K, V> entry = new Entry<>(key, value);
+
+        while (this.table[index] != null) {
+            if (this.table[index].getKey().equals(key)) {
+                this.table[index] = entry;
+                this.size++;
+                return this.table[index].getValue();
+            }
+            index = (index + 1) % this.table.length;
+        }
+
+        this.table[index] = entry;
+        this.size++;
+
+        return this.table[index].getValue();
+    }
 }
