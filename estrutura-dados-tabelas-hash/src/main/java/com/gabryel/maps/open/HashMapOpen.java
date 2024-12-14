@@ -3,6 +3,7 @@ package com.gabryel.maps.open;
 import com.gabryel.maps.Entry;
 import com.gabryel.maps.Map;
 import com.gabryel.sets.Set;
+import com.gabryel.sets.open.HashSetOpen;
 
 public class HashMapOpen<K, V> implements Map<K, V> {
 
@@ -85,12 +86,23 @@ public class HashMapOpen<K, V> implements Map<K, V> {
 
     @Override
     public Set<K> keySet() {
-        return null;
+        Set<K> keySet =  new HashSetOpen<>(this.size);
+        for (Entry<K, V> entry : this.table) {
+            if (entry != null)
+                keySet.add(entry.getKey());
+        }
+        return keySet;
     }
 
     @Override
     public Set<Entry<K, V>> entrySet() {
-        return null;
+
+        Set<Entry<K, V>> keySet = new HashSetOpen<>(this.size);
+        for (Entry<K, V> entry : this.table) {
+            if (entry != null)
+                keySet.add(entry);
+        }
+        return keySet;
     }
 
     @Override
