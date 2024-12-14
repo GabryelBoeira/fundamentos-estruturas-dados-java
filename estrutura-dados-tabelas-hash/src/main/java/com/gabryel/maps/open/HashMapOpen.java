@@ -1,5 +1,6 @@
 package com.gabryel.maps.open;
 
+import com.gabryel.listaDinamica.LinkedList;
 import com.gabryel.maps.Entry;
 import com.gabryel.maps.Map;
 import com.gabryel.sets.Set;
@@ -165,6 +166,7 @@ public class HashMapOpen<K, V> implements Map<K, V> {
         this.table[index] = entry;
         this.size++;
 
+        LinkedList<K> list = new LinkedList<>();
         return this.table[index].getValue();
     }
 }

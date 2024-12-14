@@ -1,4 +1,4 @@
-package com.gabryel.listaEstatica;
+package com.gabryel;
 
 public interface List<T>{
 
@@ -59,4 +59,8 @@ public interface List<T>{
      * Prints all elements in the list.
      */
     void print();
+
+    T[] toArray();
+
+    T[] toArray(Class<?> type);
 }

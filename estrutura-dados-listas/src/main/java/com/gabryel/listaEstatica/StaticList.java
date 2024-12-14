@@ -1,5 +1,8 @@
 package com.gabryel.listaEstatica;
 
+import com.gabryel.List;
+
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class StaticList<T> implements List<T> {
@@ -86,5 +89,18 @@ public class StaticList<T> implements List<T> {
         for (int i = 0; i < this.size; i++) {
             System.out.println(this.elements[i]);
         }
+    }
+
+    @Override
+    public T[] toArray() {
+        return Arrays.copyOf(this.elements, this.size);
+    }
+
+    @Override
+    public T[] toArray(Class<?> type) {
+        if (type.isInstance(elements))
+            return Arrays.copyOf(this.elements, this.elements.length);
+
+        throw new IllegalArgumentException("Type is not valid");
     }
 }

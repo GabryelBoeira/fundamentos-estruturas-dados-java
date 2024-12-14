@@ -1,5 +1,7 @@
 package com.gabryel.listaDinamica;
 
+import com.gabryel.List;
+
 public class Main {
 
     public static void main(String[] args) {

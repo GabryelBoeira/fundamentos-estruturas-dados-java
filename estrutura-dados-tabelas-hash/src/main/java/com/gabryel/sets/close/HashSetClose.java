@@ -32,7 +32,6 @@ public class HashSetClose<T> implements Set<T> {
         for (int i = 0; i < this.table.length; i++) {
             this.table[i] = new LinkedList<>();
         }
-
         this.size = 0;
     }
 

@@ -1,5 +1,9 @@
 package com.gabryel.listaDinamica;
 
+import com.gabryel.List;
+
+import java.lang.reflect.Array;
+
 public class LinkedList<T> implements List<T> {
 
     private Node<T> head;
@@ -112,6 +116,34 @@ public class LinkedList<T> implements List<T> {
             System.out.println(aux.getInfo());
             aux = aux.getNext();
         }
+    }
+
+    @Override
+    public T[] toArray() {
+        T[] obj = (T[]) new Object[this.size()];
+
+        Node<T> aux = this.head;
+        int index = 0;
+        while (aux != null) {
+            obj[index] = aux.getInfo();
+            aux = aux.getNext();
+            index++;
+        }
+        return obj;
+    }
+
+    @Override
+    public T[] toArray(Class<?> type) {
+        T[] obj = (T[]) Array.newInstance(type, this.size());
+
+        Node<T> aux = this.head;
+        int index = 0;
+        while (aux != null) {
+            obj[index] = aux.getInfo();
+            aux = aux.getNext();
+            index++;
+        }
+        return obj;
     }
 
 }
