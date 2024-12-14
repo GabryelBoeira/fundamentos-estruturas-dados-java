@@ -17,7 +17,7 @@ public class HashMapOpen<K, V> implements Map<K, V> {
             throw new IllegalArgumentException("Initial capacity should be greater than zero: " + initialCapacity);
 
         this.INITIAL_CAPACITY = initialCapacity;
-        this.table = (Entry<K, V>[]) new Object[this.INITIAL_CAPACITY];
+        this.table = new Entry[this.INITIAL_CAPACITY];
     }
 
     @Override
@@ -144,7 +144,7 @@ public class HashMapOpen<K, V> implements Map<K, V> {
      * and redistributes them into the new array to maintain the properties of the hash set.
      */
     private void resizeTable() {
-        Entry<K, V>[] novoArray = (Entry<K, V>[]) new Object[this.table.length * 2];
+        Entry<K, V>[] novoArray = new Entry[this.table.length * 2];
         System.arraycopy(this.table, 0, novoArray, 0, this.size);
         this.table = novoArray;
     }
