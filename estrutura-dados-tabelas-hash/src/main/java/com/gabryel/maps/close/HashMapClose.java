@@ -5,6 +5,8 @@ import com.gabryel.maps.Entry;
 import com.gabryel.maps.Map;
 import com.gabryel.sets.Set;
 
+import java.util.Arrays;
+
 public class HashMapClose<K, V> implements Map<K, V> {
 
     private final int DEFAULT_CAPACITY = 8;
@@ -23,11 +25,27 @@ public class HashMapClose<K, V> implements Map<K, V> {
 
     @Override
     public V get(K key) {
-        return null;
+        int index = this.getHash(key);
+
+        return Arrays.stream(this.table[index].toArray(Entry.class))
+                .filter(entry -> entry.getKey().equals(key))
+                .findFirst()
+                .map(Entry::getValue)
+                .orElse(null);
     }
 
     @Override
     public V remove(K key) {
+        int index = this.getHash(key);
+
+        for (Entry<K, V> entry : this.table[index].toArray(Entry.class)) {
+            if (entry.getKey().equals(key)) {
+                this.table[index].remove(entry);
+                this.size--;
+                return entry.getValue();
+            }
+
+        }
         return null;
     }
 
@@ -73,6 +91,14 @@ public class HashMapClose<K, V> implements Map<K, V> {
         }
     }
 
-    
+
+    private int getHash(K key) {
+        return Math.abs(key.hashCode()) % table.length;
+    }
+
+    private boolean checkLoadFactor() {
+        return (double) this.size / this.table.length > this.LOAD_FACTOR;
+    }
+
 
 }
