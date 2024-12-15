@@ -112,7 +112,7 @@ public class HashMapClose<K, V> implements Map<K, V> {
         if (initialCapacity <= 0)
             throw new IllegalArgumentException("Initial capacity should be greater than zero: " + initialCapacity);
 
-        this.table = new LinkedList[this.DEFAULT_CAPACITY];
+        this.table = new LinkedList[initialCapacity];
         size = 0;
 
         for (int i = 0; i < this.table.length; i++) {
@@ -152,9 +152,16 @@ public class HashMapClose<K, V> implements Map<K, V> {
      * and redistributes them into the new array to maintain the properties of the hash set.
      */
     private void resizeTable() {
-        LinkedList<Entry<K, V>>[] novoArray = new LinkedList[this.table.length * 2];
-        System.arraycopy(this.table, 0, novoArray, 0, this.size);
-        this.table = novoArray;
+        LinkedList<Entry<K, V>>[] oldTable = table;
+        initializeTable(table.length * 2);
+
+        for(LinkedList<Entry<K, V>> tableItems: oldTable) {
+            if(tableItems == null)
+                continue;
+
+            for(Entry<K, V> entry: tableItems.toArray(Entry.class))
+                addOrUpdateToTable(entry.getKey(), entry.getValue());
+        }
     }
 
     /**
@@ -168,14 +175,14 @@ public class HashMapClose<K, V> implements Map<K, V> {
         int index = this.getHash(key);
 
         Entry<K, V> newEntry = new Entry<>(key, value);
-        LinkedList<Entry<K, V>> list = this.table[index];
+        LinkedList<Entry<K, V>> tableItems = this.table[index];
 
-        if (list.contains(newEntry))
-            list.remove(newEntry);
+        if (tableItems.contains(newEntry))
+            tableItems.remove(newEntry);
         else
             this.size++;
 
-        list.add(newEntry);
+        tableItems.add(newEntry);
 
         return value;
     }
