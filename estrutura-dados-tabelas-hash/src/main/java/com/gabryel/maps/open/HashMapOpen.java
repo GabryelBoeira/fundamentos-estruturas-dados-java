@@ -150,6 +150,13 @@ public class HashMapOpen<K, V> implements Map<K, V> {
         this.table = novoArray;
     }
 
+    /**
+     * Adds or updates an element in the hash table.
+     *
+     * @param key   the key of the element to add or update
+     * @param value the value of the element to add or update
+     * @return the value of the element that was added or updated
+     */
     private V addOrUpdateToTable(K key, V value) {
         int index = this.getHash(key);
         Entry<K, V> entry = new Entry<>(key, value);
