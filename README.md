@@ -8,3 +8,7 @@ Compreenda na prática as principais estruturas de dados utilizadas no desenvolv
 - Entendimento do conceito de tabelas hash e sua aplicação para busca rápida e eficiente.
 - Uso da recursividade na implementação de algoritmos e estruturas de dados.
 - Estudo de casos reais em que a escolha apropriada de estruturas de dados influenciará o desempenho e a eficiência de sistemas complexos.
+
+[Certificado de conclusão do curso](https://www.udemy.com/certificate/UC-ab3e76b3-f600-40db-8606-b9da635dbd66/)
+
+__*Curos Concluido*__
